@@ -1,9 +1,4 @@
-const express = require('express')
-const { rotas } = require('./rotas')
-const app = express()
+const { app } = require('./app')
 const PORT = 3000
-
-app.use(express.json())
-app.use(rotas)
 
 app.listen(PORT, () => console.log(`API rodando na porta ${PORT}`))

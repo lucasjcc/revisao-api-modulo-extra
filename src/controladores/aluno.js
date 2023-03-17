@@ -4,9 +4,7 @@ const idUsuarioLogado = 1
 
 const listarAlunos = async (req, res) => {
   const { media } = req.query
-  if (isNaN(Number(media))) {
-    return res.status(400).json({ mensagem: 'Filtro inválido. Espero um número' })
-  }
+
   try {
     let queryConsulta = `
       SELECT
@@ -26,6 +24,9 @@ const listarAlunos = async (req, res) => {
     let valores = [idUsuarioLogado]
 
     if (media) {
+      if (isNaN(Number(media))) {
+        return res.status(400).json({ mensagem: 'Filtro inválido. Espero um número' })
+      }
       queryConsulta = `
         SELECT
           id,
@@ -84,5 +85,6 @@ const listarAluno = async (req, res) => {
 
 module.exports = {
   listarAlunos,
-  listarAluno
+  listarAluno,
+  idUsuarioLogado
 }
